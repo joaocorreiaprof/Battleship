@@ -1,4 +1,4 @@
-# Webpack JavaScript Project Template
+# Project: Battleship
 
 This is a JavaScript implementation of the classic Battleship game. The goal of the game is to sink all of your opponent's ships before they sink yours. The game is played on a grid, with players taking turns to target and hit their opponent’s ships.
 
