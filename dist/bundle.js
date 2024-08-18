@@ -116,7 +116,27 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_ship__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/ship */ \"./src/modules/ship.js\");\n/* harmony import */ var _modules_gameboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/gameboard */ \"./src/modules/gameboard.js\");\n\n\n\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/gameboard.js":
+/*!**********************************!*\
+  !*** ./src/modules/gameboard.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Gameboard: () => (/* binding */ Gameboard)\n/* harmony export */ });\nclass Gameboard {\n  constructor() {\n    this.grid = Array(10)\n      .fill(null)\n      .map(() => Array(10).fill(null));\n    this.missedShots = [];\n    this.attackedPositions = new Set();\n    this.ships = [];\n  }\n\n  placeShip(ship, startPosition, direction) {\n    const [x, y] = startPosition;\n\n    if (direction === \"horizontal\") {\n      for (let i = 0; i < ship.length; i++) {\n        this.grid[x][y + i] = ship;\n      }\n    }\n\n    if (direction === \"vertical\") {\n      for (let i = 0; i < ship.length; i++) {\n        this.grid[x + i][y] = ship;\n      }\n    }\n\n    this.ships.push(ship);\n  }\n\n  receiveAttack(coordinates) {\n    const [x, y] = coordinates;\n    const key = `${x},${y}`;\n\n    if (this.attackedPositions.has(key)) {\n      console.log(\"This position has already been attacked!\");\n      return;\n    }\n\n    this.attackedPositions.add(key);\n\n    if (this.grid[x][y] !== null) {\n      this.grid[x][y].hit();\n\n      if (this.grid[x][y].isSunk()) {\n        console.log(`${this.grid[x][y].name} has been sunk!`);\n      }\n    } else {\n      this.missedShots.push(coordinates);\n    }\n  }\n\n  allShipsSunk() {\n    return this.ships.every((ship) => ship.isSunk());\n  }\n}\n\n\n\n\n//# sourceURL=webpack://battleship/./src/modules/gameboard.js?");
+
+/***/ }),
+
+/***/ "./src/modules/ship.js":
+/*!*****************************!*\
+  !*** ./src/modules/ship.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Ship: () => (/* binding */ Ship)\n/* harmony export */ });\nclass Ship {\n  constructor(name, length) {\n    this.name = name;\n    this.length = length;\n    this.hits = 0;\n    this.sunk = false;\n  }\n\n  hit() {\n    if (this.hits < this.length) {\n      this.hits += 1;\n    }\n  }\n\n  isSunk() {\n    if (this.hits === this.length) {\n      this.sunk = true;\n    }\n    return this.sunk;\n  }\n}\n\n\n\n\n//# sourceURL=webpack://battleship/./src/modules/ship.js?");
 
 /***/ })
 
