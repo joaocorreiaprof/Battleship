@@ -6,11 +6,11 @@ class Ship {
     this.sunk = false;
   }
 
-  hit(coordinates) {
+  hit() {
+    console.log("working"); //not working
     if (this.hits < this.length) {
       this.hits += 1;
     }
-    console.log(coordinates + " target hit");
   }
 
   isSunk() {

@@ -24,6 +24,9 @@ class Gameboard {
     }
 
     this.ships.push(ship);
+
+    // Debug: Print the grid to verify ship placement
+    console.log("Grid after placing ship:", this.grid);
   }
 
   receiveAttack(coordinates) {
@@ -36,15 +39,19 @@ class Gameboard {
     }
 
     this.attackedPositions.add(key);
-
+    console.log("Attacked Position " + this.attackedPositions);
+    console.log("Ship at position:", this.grid([x][y])); //REASON WHY IS NOT WOKRING
+    console.log("Grid after placing ship:", this.grid); // this also doesnt work now. only in the first time page loads
     if (this.grid[x][y] !== null) {
-      this.grid[x][y].hit(coordinates);
+      console.log("i need to come here");
+      this.grid[x][y].hit(); // not working i think
 
       if (this.grid[x][y].isSunk()) {
         console.log(`${this.grid[x][y].name} has been sunk!`);
       }
     } else {
       this.missedShots.push(coordinates);
+      console.log("Missed Shots Array: " + this.missedShots);
     }
   }
 
