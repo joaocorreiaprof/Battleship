@@ -1,3 +1,33 @@
-h1 {
-  color: blue;
+/* style.css */
+#game-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 30px); /* 10 columns */
+  grid-template-rows: repeat(10, 30px); /* 10 rows */
+  gap: 2px;
+}
+
+.grid-cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.grid-cell.ship {
+  background-color: blue;
+}
+
+.grid-cell.hit {
+  background-color: red;
+}
+
+.grid-cell.miss {
+  background-color: gray;
 }

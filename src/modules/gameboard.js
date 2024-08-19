@@ -38,7 +38,7 @@ class Gameboard {
     this.attackedPositions.add(key);
 
     if (this.grid[x][y] !== null) {
-      this.grid[x][y].hit();
+      this.grid[x][y].hit(coordinates);
 
       if (this.grid[x][y].isSunk()) {
         console.log(`${this.grid[x][y].name} has been sunk!`);

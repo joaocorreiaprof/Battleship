@@ -3,10 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Template</title>
+    <title>Battleship</title>
   </head>
   <body>
-    <h1>Hello World</h1>
-    <p>console me</p>
+    <h1>Battleship</h1>
+    <div id="game-container">
+      <div id="player-board" class="board"></div>
+      <div id="computer-board" class="board"></div>
+    </div>
+    <div class="game-info">
+      <p>Information about the game</p>
+    </div>
+    <div id="game-buttons" class="game-interaction">
+      <button id="start-game" class="game-button">Start</button>
+      <button id="restart-game" class="game-button">Restart</button>
+    </div>
   </body>
 </html>
