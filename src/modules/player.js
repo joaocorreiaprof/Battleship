@@ -1,9 +1,9 @@
-import { Gameboard } from "./gameboard";
+//import { Gameboard } from "./gameboard";
 
 class Player {
-  constructor(name) {
+  constructor(name, board) {
     this.name = name;
-    this.gameboard = new Gameboard();
+    this.gameboard = board;
   }
 
   placeShip(ship, startPosition, direction) {

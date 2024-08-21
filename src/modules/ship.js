@@ -7,7 +7,6 @@ class Ship {
   }
 
   hit() {
-    console.log("working"); //not working
     if (this.hits < this.length) {
       this.hits += 1;
     }

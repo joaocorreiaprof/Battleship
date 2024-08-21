@@ -31,7 +31,6 @@ computerBoardElement.addEventListener("click", (event) => {
     // Computer's turn to attack
     //computer.randomAttack(playerGameboard);
     //renderGameboard(playerGameboard, playerBoardElement);
-
     if (computerGameboard.allShipsSunk()) {
       alert("You won! All computer ships are sunk!");
     } else if (playerGameboard.allShipsSunk()) {
