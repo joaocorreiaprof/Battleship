@@ -12,7 +12,7 @@ playerGameboard.placeShip(new Ship("Destroyer", 3), [0, 0], "horizontal");
 computerGameboard.placeShip(new Ship("Submarine", 3), [0, 0], "horizontal");
 
 const player = new Player("Player 1", playerGameboard);
-const computer = new Player("Computer", computerGameboard, true);
+const computer = new ComputerPlayer("Computer", computerGameboard);
 
 const playerBoardElement = document.getElementById("player-board");
 const computerBoardElement = document.getElementById("computer-board");
@@ -29,12 +29,17 @@ computerBoardElement.addEventListener("click", (event) => {
     computer.receiveAttack([x, y], computerGameboard);
     renderGameboard(computerGameboard, computerBoardElement);
 
-    // Computer's turn to attack
-    player.randomAttack(playerGameboard);
-    renderGameboard(playerGameboard, playerBoardElement);
     if (computerGameboard.allShipsSunk()) {
       alert("You won! All computer ships are sunk!");
-    } else if (playerGameboard.allShipsSunk()) {
+      return;
+    }
+
+    const computerMove = computer.makeMove();
+    player.receiveAttack(computerMove, playerGameboard);
+    renderGameboard(playerGameboard, playerBoardElement);
+
+    // Check if the computer has won
+    if (playerGameboard.allShipsSunk()) {
       alert("Game over! The computer has sunk all your ships.");
     }
   }
