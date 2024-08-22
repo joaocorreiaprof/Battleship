@@ -2,6 +2,7 @@ import { renderGameboard } from "./modules/renderBoard";
 import { Player } from "./modules/player";
 import { Ship } from "./modules/ship";
 import { Gameboard } from "./modules/gameboard";
+import { ComputerPlayer } from "./modules/computerPlayer";
 import "./style.css";
 
 const playerGameboard = new Gameboard();
@@ -25,12 +26,12 @@ computerBoardElement.addEventListener("click", (event) => {
   const y = parseInt(event.target.dataset.y);
 
   if (!isNaN(x) && !isNaN(y)) {
-    player.receiveAttack([x, y], computerGameboard);
+    computer.receiveAttack([x, y], computerGameboard);
     renderGameboard(computerGameboard, computerBoardElement);
 
     // Computer's turn to attack
-    //computer.randomAttack(playerGameboard);
-    //renderGameboard(playerGameboard, playerBoardElement);
+    player.randomAttack(playerGameboard);
+    renderGameboard(playerGameboard, playerBoardElement);
     if (computerGameboard.allShipsSunk()) {
       alert("You won! All computer ships are sunk!");
     } else if (playerGameboard.allShipsSunk()) {

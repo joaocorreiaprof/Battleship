@@ -20,14 +20,20 @@
   cursor: pointer;
 }
 
+.grid-cell:not(.ship, .hit, .miss):hover {
+  background-color: lightgray;
+}
+
 .grid-cell.ship {
-  background-color: green;
+  background-color: blue;
 }
 
 .grid-cell.hit {
   background-color: red;
+  cursor: no-drop;
 }
 
 .grid-cell.miss {
   background-color: gray;
+  cursor: no-drop;
 }

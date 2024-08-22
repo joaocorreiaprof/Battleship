@@ -7,6 +7,7 @@ function renderGameboard(gameboard, boardElement) {
       cell.classList.add("grid-cell");
       cell.dataset.x = i;
       cell.dataset.y = j;
+      const keys = `${i},${j}`;
 
       if (gameboard.grid[i][j] !== null) {
         cell.classList.add("ship");
@@ -18,7 +19,11 @@ function renderGameboard(gameboard, boardElement) {
         cell.classList.add("miss");
       }
 
-      if (gameboard.grid[i][j] && gameboard.grid[i][j].hits > 0) {
+      if (
+        gameboard.grid[i][j] &&
+        gameboard.grid[i][j].hits > 0 &&
+        gameboard.attackedPositions.has(keys)
+      ) {
         cell.classList.add("hit");
       }
 
