@@ -1,5 +1,4 @@
 import { renderGameboard } from "./modules/renderBoard";
-import { Player } from "./modules/player";
 import { Ship } from "./modules/ship";
 import { Gameboard } from "./modules/gameboard";
 import { ComputerPlayer } from "./modules/computerPlayer";
@@ -8,12 +7,16 @@ import "./style.css";
 document.addEventListener("DOMContentLoaded", () => {
   const playerGameboard = new Gameboard();
   const computerGameboard = new Gameboard();
-  let gameStarted = false; // Variável de controle para verificar se o jogo começou
+  let gameStarted = false;
 
   const playerBoardElement = document.getElementById("player-board");
   const computerBoardElement = document.getElementById("computer-board");
 
   const computer = new ComputerPlayer("Computer", computerGameboard);
+
+  const randomizeButton = document.getElementById("randomize-ships");
+  const startButton = document.getElementById("start-game");
+  const restartButton = document.getElementById("restart-game");
 
   function randomizeShipPlacements(gameboard) {
     gameboard.clearBoard();
@@ -68,6 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (computerGameboard.allShipsSunk()) {
         alert("You won! All computer ships are sunk!");
+        gameStarted = false;
+        randomizeButton.disabled = false;
         return;
       }
       // Computer's turn to attack
@@ -86,35 +91,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (playerGameboard.allShipsSunk()) {
         alert("Game over! The computer has sunk all your ships.");
+        gameStarted = false;
+        randomizeButton.disabled = false;
       }
     }
   }
 
   function initializeGame() {
-    randomizeShipPlacements(playerGameboard);
-    randomizeShipPlacements(computerGameboard);
-    renderGameboard(playerGameboard, playerBoardElement);
-    renderGameboard(computerGameboard, computerBoardElement);
+    randomizeShipPlacements(computerGameboard); // Randomiza os navios do computador
+    renderGameboard(computerGameboard, computerBoardElement); // Renderiza o tabuleiro do computador
+
     computerBoardElement.removeEventListener("click", handleComputerBoardClick);
     computerBoardElement.addEventListener("click", handleComputerBoardClick);
+
+    playerBoardElement.removeEventListener("click", handleComputerBoardClick);
+    playerBoardElement.addEventListener("click", handleComputerBoardClick); // Adiciona click handler para o tabuleiro do jogador
   }
 
-  document.getElementById("start-game").addEventListener("click", () => {
-    initializeGame();
-    gameStarted = true; // Agora o jogo está oficialmente iniciado
-    alert("Game started! Attack the computer's board.");
+  function setupInitialBoardView() {
+    randomizeShipPlacements(playerGameboard); // Randomiza os navios do jogador
+    renderGameboard(playerGameboard, playerBoardElement); // Renderiza o tabuleiro do jogador
+
+    // Exibe o tabuleiro do computador, mas não interativo até o início do jogo
+    renderGameboard(computerGameboard, computerBoardElement);
+    computerBoardElement.style.pointerEvents = "none"; // Desabilita eventos de clique no tabuleiro do computador
+
+    randomizeButton.disabled = false; // Habilita o botão de randomizar
+  }
+
+  startButton.addEventListener("click", () => {
+    if (!gameStarted) {
+      initializeGame();
+      gameStarted = true;
+      computerBoardElement.style.pointerEvents = "auto"; // Habilita eventos de clique no tabuleiro do computador
+      randomizeButton.disabled = true; // Desativa o botão de randomizar quando o jogo começa
+      alert("Game started! Attack the computer's board.");
+    }
   });
 
-  document.getElementById("restart-game").addEventListener("click", () => {
-    initializeGame();
-    gameStarted = true; // Reiniciar o jogo também conta como começar o jogo
-    alert("Game restarted! Attack the computer's board.");
+  restartButton.addEventListener("click", () => {
+    if (gameStarted) {
+      initializeGame();
+      gameStarted = true;
+      randomizeButton.disabled = true; // Desativa o botão de randomizar quando o jogo começa
+      alert("Game restarted! Attack the computer's board.");
+    }
   });
 
-  document.getElementById("randomize-ships").addEventListener("click", () => {
-    randomizeShipPlacements(playerGameboard);
-    renderGameboard(playerGameboard, playerBoardElement);
+  randomizeButton.addEventListener("click", () => {
+    if (!gameStarted) {
+      randomizeShipPlacements(playerGameboard);
+      renderGameboard(playerGameboard, playerBoardElement);
+    }
   });
 
-  // O jogo não começa automaticamente ao carregar a página
+  setupInitialBoardView(); // Exibe os tabuleiros ao carregar a página
 });
