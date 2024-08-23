@@ -10,6 +10,7 @@
   grid-template-columns: repeat(10, 30px);
   grid-template-rows: repeat(10, 30px);
   gap: 3px;
+  position: relative; /* Ensure positioning context for click detection */
 }
 
 .grid-cell {
@@ -19,6 +20,7 @@
   box-sizing: border-box;
   cursor: pointer;
   background-color: rgb(182, 234, 255);
+  position: relative; /* Ensure relative positioning */
 }
 
 .grid-cell.ship {

@@ -5,7 +5,7 @@ function renderGameboard(gameboard, boardElement) {
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
       cell.classList.add("grid-cell");
-      cell.dataset.x = i;
+      cell.dataset.x = i; // Ensure correct data attributes
       cell.dataset.y = j;
       const keys = `${i},${j}`;
 
@@ -31,5 +31,4 @@ function renderGameboard(gameboard, boardElement) {
     }
   }
 }
-
 export { renderGameboard };
