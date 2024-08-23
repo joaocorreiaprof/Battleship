@@ -1,4 +1,3 @@
-// Gameboard.js
 class Gameboard {
   constructor() {
     this.grid = Array(10)
