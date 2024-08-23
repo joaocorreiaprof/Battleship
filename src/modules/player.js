@@ -1,5 +1,3 @@
-//import { Gameboard } from "./gameboard";
-
 class Player {
   constructor(name, board) {
     this.name = name;
