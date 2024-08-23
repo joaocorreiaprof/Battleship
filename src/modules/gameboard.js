@@ -22,9 +22,9 @@ class Gameboard {
     const [x, y] = startPosition;
 
     if (direction === "horizontal") {
-      if (y + ship.length > 10) return false; // Não permitir posicionamento fora do tabuleiro
+      if (y + ship.length > 10) return false;
       for (let i = 0; i < ship.length; i++) {
-        if (this.grid[x][y + i] !== null) return false; // Verificar se a posição já está ocupada
+        if (this.grid[x][y + i] !== null) return false;
       }
       for (let i = 0; i < ship.length; i++) {
         this.grid[x][y + i] = ship;

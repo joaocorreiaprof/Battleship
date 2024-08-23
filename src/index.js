@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
           validMove = true;
         }
       }
-      renderGameboard(playerGameboard, playerBoardElement);
+      renderGameboard(playerGameboard, playerBoardElement, true);
 
       if (playerGameboard.allShipsSunk()) {
         alert("Game over! The computer has sunk all your ships.");
@@ -98,33 +98,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initializeGame() {
-    randomizeShipPlacements(computerGameboard); // Randomiza os navios do computador
-    renderGameboard(computerGameboard, computerBoardElement); // Renderiza o tabuleiro do computador
+    randomizeShipPlacements(computerGameboard);
+    renderGameboard(computerGameboard, computerBoardElement);
 
     computerBoardElement.removeEventListener("click", handleComputerBoardClick);
     computerBoardElement.addEventListener("click", handleComputerBoardClick);
 
     playerBoardElement.removeEventListener("click", handleComputerBoardClick);
-    playerBoardElement.addEventListener("click", handleComputerBoardClick); // Adiciona click handler para o tabuleiro do jogador
+    playerBoardElement.addEventListener("click", handleComputerBoardClick);
   }
 
   function setupInitialBoardView() {
-    randomizeShipPlacements(playerGameboard); // Randomiza os navios do jogador
-    renderGameboard(playerGameboard, playerBoardElement); // Renderiza o tabuleiro do jogador
+    randomizeShipPlacements(playerGameboard);
+    renderGameboard(playerGameboard, playerBoardElement, true);
 
-    // Exibe o tabuleiro do computador, mas não interativo até o início do jogo
     renderGameboard(computerGameboard, computerBoardElement);
-    computerBoardElement.style.pointerEvents = "none"; // Desabilita eventos de clique no tabuleiro do computador
+    computerBoardElement.style.pointerEvents = "none";
 
-    randomizeButton.disabled = false; // Habilita o botão de randomizar
+    randomizeButton.disabled = false;
   }
 
   startButton.addEventListener("click", () => {
     if (!gameStarted) {
       initializeGame();
       gameStarted = true;
-      computerBoardElement.style.pointerEvents = "auto"; // Habilita eventos de clique no tabuleiro do computador
-      randomizeButton.disabled = true; // Desativa o botão de randomizar quando o jogo começa
+      computerBoardElement.style.pointerEvents = "auto";
+      randomizeButton.disabled = true;
       alert("Game started! Attack the computer's board.");
     }
   });
@@ -133,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (gameStarted) {
       initializeGame();
       gameStarted = true;
-      randomizeButton.disabled = true; // Desativa o botão de randomizar quando o jogo começa
+      randomizeButton.disabled = true;
       alert("Game restarted! Attack the computer's board.");
     }
   });
@@ -141,9 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
   randomizeButton.addEventListener("click", () => {
     if (!gameStarted) {
       randomizeShipPlacements(playerGameboard);
-      renderGameboard(playerGameboard, playerBoardElement);
+      renderGameboard(playerGameboard, playerBoardElement, true);
     }
   });
 
-  setupInitialBoardView(); // Exibe os tabuleiros ao carregar a página
+  setupInitialBoardView();
 });
