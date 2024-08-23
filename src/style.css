@@ -9,31 +9,28 @@
   display: grid;
   grid-template-columns: repeat(10, 30px);
   grid-template-rows: repeat(10, 30px);
-  gap: 2px;
+  gap: 3px;
 }
 
 .grid-cell {
   width: 30px;
   height: 30px;
-  border: 1px solid black;
+  border: 2px solid black;
   box-sizing: border-box;
   cursor: pointer;
-}
-
-.grid-cell:not(.ship, .hit, .miss):hover {
-  background-color: lightgray;
+  background-color: rgb(182, 234, 255);
 }
 
 .grid-cell.ship {
-  background-color: blue;
+  background-color: rgb(255, 255, 112);
 }
 
 .grid-cell.hit {
-  background-color: red;
+  background-color: rgb(230, 109, 109);
   cursor: no-drop;
 }
 
 .grid-cell.miss {
-  background-color: gray;
+  background-color: rgb(182, 177, 177);
   cursor: no-drop;
 }

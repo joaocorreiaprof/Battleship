@@ -7,9 +7,46 @@ import "./style.css";
 
 const playerGameboard = new Gameboard();
 const computerGameboard = new Gameboard();
-
-playerGameboard.placeShip(new Ship("Destroyer", 3), [0, 0], "horizontal");
-computerGameboard.placeShip(new Ship("Submarine", 3), [0, 0], "horizontal");
+//Player board
+playerGameboard.placeShip(new Ship("Carrier", 5), [0, 0], "horizontal");
+playerGameboard.placeShip(new Ship("Battleship One", 4), [2, 2], "vertical");
+playerGameboard.placeShip(new Ship("Battleship Two", 4), [2, 0], "vertical");
+playerGameboard.placeShip(new Ship("Destroyer One", 3), [4, 4], "horizontal");
+playerGameboard.placeShip(new Ship("Destroyer Two", 3), [9, 7], "horizontal");
+playerGameboard.placeShip(new Ship("Destroyer Three", 3), [6, 4], "horizontal");
+playerGameboard.placeShip(new Ship("Submarine One", 3), [6, 1], "vertical");
+playerGameboard.placeShip(new Ship("Submarine Two", 3), [0, 6], "vertical");
+playerGameboard.placeShip(new Ship("Submarine Three", 3), [6, 3], "vertical");
+playerGameboard.placeShip(new Ship("Submarine Four", 3), [5, 7], "horizontal");
+playerGameboard.placeShip(new Ship("Patrol One", 2), [8, 6], "horizontal");
+playerGameboard.placeShip(new Ship("Patrol Two", 2), [6, 8], "horizontal");
+playerGameboard.placeShip(new Ship("Patrol Three", 2), [0, 8], "vertical");
+playerGameboard.placeShip(new Ship("Patrol Four", 2), [9, 3], "horizontal");
+playerGameboard.placeShip(new Ship("Patrol Five", 2), [3, 8], "horizontal");
+//Computer board
+computerGameboard.placeShip(new Ship("Carrier", 5), [0, 0], "horizontal");
+computerGameboard.placeShip(new Ship("Battleship One", 4), [2, 2], "vertical");
+computerGameboard.placeShip(new Ship("Battleship Two", 4), [2, 0], "vertical");
+computerGameboard.placeShip(new Ship("Destroyer One", 3), [4, 4], "horizontal");
+computerGameboard.placeShip(new Ship("Destroyer Two", 3), [9, 7], "horizontal");
+computerGameboard.placeShip(
+  new Ship("Destroyer Three", 3),
+  [6, 4],
+  "horizontal"
+);
+computerGameboard.placeShip(new Ship("Submarine One", 3), [6, 1], "vertical");
+computerGameboard.placeShip(new Ship("Submarine Two", 3), [0, 6], "vertical");
+computerGameboard.placeShip(new Ship("Submarine Three", 3), [6, 3], "vertical");
+computerGameboard.placeShip(
+  new Ship("Submarine Four", 3),
+  [5, 7],
+  "horizontal"
+);
+computerGameboard.placeShip(new Ship("Patrol One", 2), [8, 6], "horizontal");
+computerGameboard.placeShip(new Ship("Patrol Two", 2), [6, 8], "horizontal");
+computerGameboard.placeShip(new Ship("Patrol Three", 2), [0, 8], "vertical");
+computerGameboard.placeShip(new Ship("Patrol Four", 2), [9, 3], "horizontal");
+computerGameboard.placeShip(new Ship("Patrol Five", 2), [3, 8], "horizontal");
 
 const player = new Player("Player 1", playerGameboard);
 const computer = new ComputerPlayer("Computer", computerGameboard);
@@ -39,23 +76,22 @@ computerBoardElement.addEventListener("click", (event) => {
       return;
     }
     //Computer turn to attack
-    setTimeout(() => {
-      let validMove = false;
-      while (!validMove) {
-        const computerMove = computer.makeMove();
-        const [cx, cy] = computerMove;
-        const computerKey = `${cx},${cy}`;
 
-        if (!playerGameboard.attackedPositions.has(computerKey)) {
-          player.receiveAttack(computerMove, playerGameboard);
-          validMove = true;
-        }
-      }
-      renderGameboard(playerGameboard, playerBoardElement);
+    let validMove = false;
+    while (!validMove) {
+      const computerMove = computer.makeMove();
+      const [cx, cy] = computerMove;
+      const computerKey = `${cx},${cy}`;
 
-      if (playerGameboard.allShipsSunk()) {
-        alert("Game over! The computer has sunk all your ships.");
+      if (!playerGameboard.attackedPositions.has(computerKey)) {
+        player.receiveAttack(computerMove, playerGameboard);
+        validMove = true;
       }
-    }, 500);
+    }
+    renderGameboard(playerGameboard, playerBoardElement);
+
+    if (playerGameboard.allShipsSunk()) {
+      alert("Game over! The computer has sunk all your ships.");
+    }
   }
 });
