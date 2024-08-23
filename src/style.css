@@ -1,7 +1,6 @@
-/* General styles */
 body {
-  font-family: "Roboto", sans-serif;
-  background: #f7f9fc;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6dd5ed, #2193b0);
   margin: 0;
   padding: 0;
   display: flex;
@@ -10,57 +9,58 @@ body {
   height: 100vh;
 }
 
-/* Container for the entire game */
 .container {
   text-align: center;
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   padding: 30px;
   width: 90%;
   max-width: 1200px;
+  overflow: hidden;
 }
 
-/* Header styling */
 header {
   margin-bottom: 20px;
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2.8em;
   color: #333;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  margin: 0;
 }
 
-/* Main section styling */
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Board styling */
 .boards {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   margin-bottom: 20px;
   width: 100%;
 }
 
 .board-container {
-  background: #e8eff3;
-  border-radius: 10px;
+  background: #f4f4f4;
+  border-radius: 12px;
   padding: 15px;
   width: 45%;
   position: relative;
+  border: 2px solid #ddd;
 }
 
 .board-container h2 {
   margin: 0;
-  font-size: 1.5em;
-  color: #444;
+  font-size: 1.6em;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-/* Grid styling */
 .gameboard {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -70,47 +70,51 @@ main {
   max-width: 500px;
   height: 500px;
   margin: 0 auto;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: #e0e0e0;
 }
 
 .grid-cell {
-  background: #cddcfe;
-  border: 1px solid #b0bec5;
+  background: #b3cde0;
+  border: 1px solid #9eb8c7;
   border-radius: 4px;
   transition: background-color 0.3s, transform 0.2s;
   cursor: pointer;
 }
 
 .grid-cell.ship {
-  background: #4f81bd;
+  background: #7f8c8d;
 }
 
 .grid-cell.hit {
-  background: #f44336;
+  background: #e74c3c;
 }
 
 .grid-cell.miss {
-  background: #ffffff;
+  background: #f9f9f9;
 }
 
-/* Button styling */
 .controls {
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .controls button {
-  background: #6200ea;
+  background: #3498db;
   border: none;
   color: white;
   padding: 12px 24px;
-  margin: 5px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1.1em;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .controls button:hover {
-  background: #3700b3;
+  background: #2980b9;
 }
 
 .controls button:active {
@@ -118,7 +122,7 @@ main {
 }
 
 .controls button:disabled {
-  background: #9e9e9e;
+  background: #95a5a6;
   cursor: not-allowed;
 }
 

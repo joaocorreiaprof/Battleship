@@ -3,30 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Battleship</title>
+    <title>Battleship Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
       <header>
-        <h1>Battleship Game</h1>
+        <h1>Battleship</h1>
       </header>
       <main>
-        <div class="boards">
+        <section class="boards">
           <div class="board-container">
-            <h2>Your Board</h2>
+            <h2>Your Fleet</h2>
             <div id="player-board" class="gameboard"></div>
           </div>
           <div class="board-container">
-            <h2>Computer's Board</h2>
+            <h2>Enemy Fleet</h2>
             <div id="computer-board" class="gameboard"></div>
           </div>
-        </div>
-        <div class="controls">
+        </section>
+        <section class="controls">
           <button id="randomize-ships">Randomize Ships</button>
           <button id="start-game">Start Game</button>
           <button id="restart-game">Restart Game</button>
-        </div>
+        </section>
       </main>
     </div>
   </body>
