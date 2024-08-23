@@ -8,6 +8,7 @@ import "./style.css";
 document.addEventListener("DOMContentLoaded", () => {
   const playerGameboard = new Gameboard();
   const computerGameboard = new Gameboard();
+  let gameStarted = false; // Variável de controle para verificar se o jogo começou
 
   const playerBoardElement = document.getElementById("player-board");
   const computerBoardElement = document.getElementById("computer-board");
@@ -47,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function handleComputerBoardClick(event) {
+    if (!gameStarted) {
+      alert("You need to start the game first!");
+      return;
+    }
+
     const x = parseInt(event.target.dataset.x);
     const y = parseInt(event.target.dataset.y);
 
@@ -95,11 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("start-game").addEventListener("click", () => {
     initializeGame();
+    gameStarted = true; // Agora o jogo está oficialmente iniciado
     alert("Game started! Attack the computer's board.");
   });
 
   document.getElementById("restart-game").addEventListener("click", () => {
     initializeGame();
+    gameStarted = true; // Reiniciar o jogo também conta como começar o jogo
     alert("Game restarted! Attack the computer's board.");
   });
 
@@ -108,6 +116,5 @@ document.addEventListener("DOMContentLoaded", () => {
     renderGameboard(playerGameboard, playerBoardElement);
   });
 
-  // Iniciar o jogo automaticamente ao carregar a página
-  initializeGame();
+  // O jogo não começa automaticamente ao carregar a página
 });
