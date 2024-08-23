@@ -1,38 +1,134 @@
-/* style.css */
-#game-container {
+/* General styles */
+body {
+  font-family: "Roboto", sans-serif;
+  background: #f7f9fc;
+  margin: 0;
+  padding: 0;
   display: flex;
-  justify-content: space-around;
-  margin: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.board {
+/* Container for the entire game */
+.container {
+  text-align: center;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* Header styling */
+header {
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #333;
+}
+
+/* Main section styling */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Board styling */
+.boards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.board-container {
+  background: #e8eff3;
+  border-radius: 10px;
+  padding: 15px;
+  width: 45%;
+  position: relative;
+}
+
+.board-container h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #444;
+}
+
+/* Grid styling */
+.gameboard {
   display: grid;
-  grid-template-columns: repeat(10, 30px);
-  grid-template-rows: repeat(10, 30px);
-  gap: 3px;
-  position: relative; /* Ensure positioning context for click detection */
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 2px;
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  margin: 0 auto;
 }
 
 .grid-cell {
-  width: 30px;
-  height: 30px;
-  border: 2px solid black;
-  box-sizing: border-box;
+  background: #cddcfe;
+  border: 1px solid #b0bec5;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.2s;
   cursor: pointer;
-  background-color: rgb(182, 234, 255);
-  position: relative; /* Ensure relative positioning */
 }
 
 .grid-cell.ship {
-  background-color: rgb(255, 255, 112);
+  background: #4f81bd;
 }
 
 .grid-cell.hit {
-  background-color: rgb(230, 109, 109);
-  cursor: no-drop;
+  background: #f44336;
 }
 
 .grid-cell.miss {
-  background-color: rgb(182, 177, 177);
-  cursor: no-drop;
+  background: #ffffff;
+}
+
+/* Button styling */
+.controls {
+  margin-top: 20px;
+}
+
+.controls button {
+  background: #6200ea;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.controls button:hover {
+  background: #3700b3;
+}
+
+.controls button:active {
+  transform: scale(0.98);
+}
+
+.controls button:disabled {
+  background: #9e9e9e;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .boards {
+    flex-direction: column;
+  }
+
+  .board-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }

@@ -7,19 +7,27 @@
     <link rel="stylesheet" href="style.css" />
   <script defer src="bundle.js"></script></head>
   <body>
-    <h1>Battleship</h1>
-    <div id="game-container">
-      <div id="player-board" class="board"></div>
-      <div id="computer-board" class="board"></div>
-    </div>
-    <div class="game-info">
-      <p>Information about the game</p>
-    </div>
-    <div id="game-buttons" class="game-interaction">
-      <!-- Verifique se os IDs estão corretos -->
-      <button id="start-game" class="game-button">Start</button>
-      <button id="restart-game" class="game-button">Restart</button>
-      <button id="randomize-ships" class="game-button">Randomize Ships</button>
+    <div class="container">
+      <header>
+        <h1>Battleship Game</h1>
+      </header>
+      <main>
+        <div class="boards">
+          <div class="board-container">
+            <h2>Your Board</h2>
+            <div id="player-board" class="gameboard"></div>
+          </div>
+          <div class="board-container">
+            <h2>Computer's Board</h2>
+            <div id="computer-board" class="gameboard"></div>
+          </div>
+        </div>
+        <div class="controls">
+          <button id="randomize-ships">Randomize Ships</button>
+          <button id="start-game">Start Game</button>
+          <button id="restart-game">Restart Game</button>
+        </div>
+      </main>
     </div>
   </body>
 </html>
