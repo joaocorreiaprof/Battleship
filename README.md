@@ -4,6 +4,9 @@ This is a JavaScript implementation of the classic Battleship game. The goal of 
 
 This project is built using modern JavaScript (ES6 modules) along with Webpack for bundling. It also includes unit testing using Jest, making sure the core logic is reliable and thoroughly tested.
 
+##Live
+https://joaocorreiaprof.github.io/Battleship/
+
 ## Getting Started
 
 Follow these instructions to get a copy of the project template up and running on your local machine.
